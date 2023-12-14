@@ -29,6 +29,7 @@ org\mourya\msscbeerorderservice\web\mapper\BeerOrderLineMapper.class
 org\mourya\msscbeerorderservice\web\model\BaseItem.class
 org\mourya\msscbeerorderservice\web\model\OrderStatusEnum.class
 org\mourya\msscbeerorderservice\repositories\BeerOrderLineRepository.class
+org\mourya\msscbeerorderservice\web\mapper\BeerOrderMapperImpl$1.class
 org\mourya\msscbeerorderservice\web\model\BeerOrderLineDto.class
 org\mourya\msscbeerorderservice\web\mapper\BeerOrderLineMapperImpl.class
 org\mourya\msscbeerorderservice\web\mapper\BeerOrderMapper.class
