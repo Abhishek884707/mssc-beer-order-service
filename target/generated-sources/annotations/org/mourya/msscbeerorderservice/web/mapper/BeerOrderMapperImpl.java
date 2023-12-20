@@ -1,15 +1,15 @@
 package org.mourya.msscbeerorderservice.web.mapper;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 import javax.annotation.processing.Generated;
 import org.mourya.msscbeerorderservice.domain.BeerOrder;
-import org.mourya.msscbeerorderservice.domain.BeerOrder.BeerOrderBuilder;
 import org.mourya.msscbeerorderservice.domain.BeerOrderLine;
+import org.mourya.msscbeerorderservice.domain.Customer;
 import org.mourya.msscbeerorderservice.web.model.BeerOrderDto;
-import org.mourya.msscbeerorderservice.web.model.BeerOrderDto.BeerOrderDtoBuilder;
 import org.mourya.msscbeerorderservice.web.model.BeerOrderLineDto;
 import org.mourya.msscbeerorderservice.web.model.OrderStatusEnum;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +17,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-12-14T14:41:28+0530",
-    comments = "version: 1.3.0.Final, compiler: javac, environment: Java 17.0.6 (Oracle Corporation)"
+    date = "2023-12-20T14:02:09+0530",
+    comments = "version: 1.5.2.Final, compiler: javac, environment: Java 17.0.6 (Oracle Corporation)"
 )
 @Component
 public class BeerOrderMapperImpl implements BeerOrderMapper {
@@ -34,8 +34,9 @@ public class BeerOrderMapperImpl implements BeerOrderMapper {
             return null;
         }
 
-        BeerOrderDtoBuilder beerOrderDto = BeerOrderDto.builder();
+        BeerOrderDto.BeerOrderDtoBuilder beerOrderDto = BeerOrderDto.builder();
 
+        beerOrderDto.customerId( beerOrderCustomerId( beerOrder ) );
         beerOrderDto.id( beerOrder.getId() );
         if ( beerOrder.getVersion() != null ) {
             beerOrderDto.version( beerOrder.getVersion().intValue() );
@@ -56,7 +57,7 @@ public class BeerOrderMapperImpl implements BeerOrderMapper {
             return null;
         }
 
-        BeerOrderBuilder beerOrder = BeerOrder.builder();
+        BeerOrder.BeerOrderBuilder beerOrder = BeerOrder.builder();
 
         beerOrder.id( dto.getId() );
         if ( dto.getVersion() != null ) {
@@ -70,6 +71,21 @@ public class BeerOrderMapperImpl implements BeerOrderMapper {
         beerOrder.orderStatusCallbackUrl( dto.getOrderStatusCallbackUrl() );
 
         return beerOrder.build();
+    }
+
+    private UUID beerOrderCustomerId(BeerOrder beerOrder) {
+        if ( beerOrder == null ) {
+            return null;
+        }
+        Customer customer = beerOrder.getCustomer();
+        if ( customer == null ) {
+            return null;
+        }
+        UUID id = customer.getId();
+        if ( id == null ) {
+            return null;
+        }
+        return id;
     }
 
     protected List<BeerOrderLineDto> beerOrderLineSetToBeerOrderLineDtoList(Set<BeerOrderLine> set) {
@@ -110,7 +126,7 @@ public class BeerOrderMapperImpl implements BeerOrderMapper {
             return null;
         }
 
-        Set<BeerOrderLine> set = new HashSet<BeerOrderLine>( Math.max( (int) ( list.size() / .75f ) + 1, 16 ) );
+        Set<BeerOrderLine> set = new LinkedHashSet<BeerOrderLine>( Math.max( (int) ( list.size() / .75f ) + 1, 16 ) );
         for ( BeerOrderLineDto beerOrderLineDto : list ) {
             set.add( beerOrderLineMapper.dtoToBeerOrderLine( beerOrderLineDto ) );
         }

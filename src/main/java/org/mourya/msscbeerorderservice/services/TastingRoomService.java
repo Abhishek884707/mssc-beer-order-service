@@ -39,12 +39,13 @@ public class TastingRoomService {
     @Transactional
     @Scheduled(fixedRate = 2000) //run every 2 seconds
     public void placeTastingRoomOrder(){
-
         List<Customer> customerList = customerRepository.findAllByCustomerNameLike(BeerOrderBootStrap.TASTING_ROOM);
 
         if (customerList.size() == 1){ //should be just one
             doPlaceOrder(customerList.get(0));
+            log.info(String.valueOf(customerList.size()));
         } else {
+            log.info(String.valueOf(customerList.size()));
             log.error("Too many or too few tasting room customers found");
         }
     }
