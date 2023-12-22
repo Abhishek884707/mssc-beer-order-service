@@ -1,9 +1,9 @@
 package org.mourya.msscbeerorderservice.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
 import lombok.*;
 
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import java.sql.Timestamp;
 import java.util.UUID;
 

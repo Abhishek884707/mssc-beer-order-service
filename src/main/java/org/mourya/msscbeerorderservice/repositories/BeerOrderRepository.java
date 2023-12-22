@@ -1,6 +1,5 @@
 package org.mourya.msscbeerorderservice.repositories;
 
-import jakarta.persistence.LockModeType;
 import org.mourya.msscbeerorderservice.domain.BeerOrder;
 import org.mourya.msscbeerorderservice.domain.Customer;
 import org.mourya.msscbeerorderservice.domain.OrderStatusEnum;
@@ -9,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;
 
+import javax.persistence.LockModeType;
 import java.util.List;
 import java.util.UUID;
 
