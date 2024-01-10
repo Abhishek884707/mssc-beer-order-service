@@ -1,6 +1,6 @@
 package org.mourya.msscbeerorderservice.services.beer;
 
-import org.mourya.msscbeerorderservice.web.model.BeerDto;
+import org.mourya.brewery.model.BeerDto;
 
 
 import java.util.Optional;

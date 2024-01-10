@@ -1,7 +1,7 @@
 package org.mourya.msscbeerorderservice.services;
 
-import org.mourya.msscbeerorderservice.web.model.BeerOrderDto;
-import org.mourya.msscbeerorderservice.web.model.BeerOrderPagedList;
+import org.mourya.brewery.model.BeerOrderDto;
+import org.mourya.brewery.model.BeerOrderPagedList;
 import org.springframework.data.domain.Pageable;
 
 import java.util.UUID;

@@ -2,8 +2,8 @@ package org.mourya.msscbeerorderservice.web.mapper;
 
 import org.mourya.msscbeerorderservice.domain.BeerOrderLine;
 import org.mourya.msscbeerorderservice.services.beer.BeerService;
-import org.mourya.msscbeerorderservice.web.model.BeerDto;
-import org.mourya.msscbeerorderservice.web.model.BeerOrderLineDto;
+import org.mourya.brewery.model.BeerDto;
+import org.mourya.brewery.model.BeerOrderLineDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 

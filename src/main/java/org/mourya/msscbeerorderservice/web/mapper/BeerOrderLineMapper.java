@@ -3,7 +3,7 @@ package org.mourya.msscbeerorderservice.web.mapper;
 import org.mapstruct.DecoratedWith;
 import org.mapstruct.Mapper;
 import org.mourya.msscbeerorderservice.domain.BeerOrderLine;
-import org.mourya.msscbeerorderservice.web.model.BeerOrderLineDto;
+import org.mourya.brewery.model.BeerOrderLineDto;
 
 @Mapper(uses = {DateMapper.class})
 @DecoratedWith(BeerOrderLineMapperDecorator.class)

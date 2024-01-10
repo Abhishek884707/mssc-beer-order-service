@@ -1,8 +1,8 @@
 package org.mourya.msscbeerorderservice.web.controller;
 
 import org.mourya.msscbeerorderservice.services.BeerOrderService;
-import org.mourya.msscbeerorderservice.web.model.BeerOrderDto;
-import org.mourya.msscbeerorderservice.web.model.BeerOrderPagedList;
+import org.mourya.brewery.model.BeerOrderDto;
+import org.mourya.brewery.model.BeerOrderPagedList;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

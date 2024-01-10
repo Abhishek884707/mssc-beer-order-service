@@ -1,11 +1,10 @@
 package org.mourya.msscbeerorderservice.services.beer;
 
 import lombok.extern.slf4j.Slf4j;
-import org.mourya.msscbeerorderservice.web.model.BeerDto;
+import org.mourya.brewery.model.BeerDto;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Optional;

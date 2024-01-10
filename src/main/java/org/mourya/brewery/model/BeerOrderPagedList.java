@@ -1,4 +1,4 @@
-package org.mourya.msscbeerorderservice.web.model;
+package org.mourya.brewery.model;
 
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;

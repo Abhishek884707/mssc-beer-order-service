@@ -1,4 +1,4 @@
-package org.mourya.msscbeerorderservice.web.model;
+package org.mourya.brewery.model;
 
 public enum BeerStyleEnum {
     LAGER, PILSNER, STOUT, GOSE, PORTER, ALE, WHEAT, IPA, PALE_ALE, SAISON
