@@ -1,5 +1,0 @@
-package org.mourya.msscbeerorderservice.web.model;
-
-public enum  OrderStatusEnum {
-    NEW, VALIDATE, VALIDATION_EXCEPTION, ALLOCATED, ALLOCATION_EXCEPTION, PENDING_INVENTORY, PICKED_UP, DELIVERED, DELIVERED_EXCEPTION
-}

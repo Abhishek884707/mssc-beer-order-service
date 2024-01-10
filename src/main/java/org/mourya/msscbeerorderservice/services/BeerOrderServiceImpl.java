@@ -2,8 +2,8 @@ package org.mourya.msscbeerorderservice.services;
 
 import lombok.extern.slf4j.Slf4j;
 import org.mourya.msscbeerorderservice.domain.BeerOrder;
+import org.mourya.msscbeerorderservice.domain.BeerOrderStatusEnum;
 import org.mourya.msscbeerorderservice.domain.Customer;
-import org.mourya.msscbeerorderservice.web.model.OrderStatusEnum;
 import org.mourya.msscbeerorderservice.repositories.BeerOrderRepository;
 import org.mourya.msscbeerorderservice.repositories.CustomerRepository;
 import org.mourya.msscbeerorderservice.web.mapper.BeerOrderMapper;
@@ -67,7 +67,7 @@ public class BeerOrderServiceImpl implements BeerOrderService {
             BeerOrder beerOrder = beerOrderMapper.dtoToBeerOrder(beerOrderDto);
             beerOrder.setId(null); //should not be set by outside client
             beerOrder.setCustomer(customerOptional.get());
-            beerOrder.setOrderStatus(OrderStatusEnum.NEW);
+            beerOrder.setOrderStatus(BeerOrderStatusEnum.NEW);
 
             beerOrder.getBeerOrderLines().forEach(line -> line.setBeerOrder(beerOrder));
 
@@ -92,7 +92,7 @@ public class BeerOrderServiceImpl implements BeerOrderService {
     @Override
     public void pickupOrder(UUID customerId, UUID orderId) {
         BeerOrder beerOrder = getOrder(customerId, orderId);
-        beerOrder.setOrderStatus(OrderStatusEnum.PICKED_UP);
+        beerOrder.setOrderStatus(BeerOrderStatusEnum.PICKED_UP);
 
         beerOrderRepository.save(beerOrder);
     }
