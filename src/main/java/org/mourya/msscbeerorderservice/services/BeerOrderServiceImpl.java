@@ -3,7 +3,7 @@ package org.mourya.msscbeerorderservice.services;
 import lombok.extern.slf4j.Slf4j;
 import org.mourya.msscbeerorderservice.domain.BeerOrder;
 import org.mourya.msscbeerorderservice.domain.Customer;
-import org.mourya.msscbeerorderservice.domain.OrderStatusEnum;
+import org.mourya.msscbeerorderservice.web.model.OrderStatusEnum;
 import org.mourya.msscbeerorderservice.repositories.BeerOrderRepository;
 import org.mourya.msscbeerorderservice.repositories.CustomerRepository;
 import org.mourya.msscbeerorderservice.web.mapper.BeerOrderMapper;

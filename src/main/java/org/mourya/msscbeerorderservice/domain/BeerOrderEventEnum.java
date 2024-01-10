@@ -1,4 +1,4 @@
-package org.mourya.msscbeerorderservice.web.model;
+package org.mourya.msscbeerorderservice.domain;
 
 public enum BeerOrderEventEnum {
     VALIDATION_ORDER, VALIDATION_PASSED, VALIDATION_FAILED,

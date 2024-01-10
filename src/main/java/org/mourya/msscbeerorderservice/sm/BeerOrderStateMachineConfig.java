@@ -1,7 +1,7 @@
 package org.mourya.msscbeerorderservice.sm;
 
-import org.mourya.msscbeerorderservice.web.model.BeerOrderEventEnum;
-import org.mourya.msscbeerorderservice.web.model.BeerOrderStatusEnum;
+import org.mourya.msscbeerorderservice.domain.BeerOrderStatusEnum;
+import org.mourya.msscbeerorderservice.domain.BeerOrderEventEnum;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.statemachine.config.EnableStateMachineFactory;
 import org.springframework.statemachine.config.StateMachineConfigurerAdapter;

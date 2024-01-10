@@ -7,6 +7,8 @@ import jakarta.persistence.OneToMany;
 import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.mourya.msscbeerorderservice.web.model.OrderStatusEnum;
+
 import java.sql.Timestamp;
 import java.util.Set;
 import java.util.UUID;

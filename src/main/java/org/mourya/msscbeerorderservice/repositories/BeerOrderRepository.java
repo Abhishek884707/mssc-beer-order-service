@@ -3,7 +3,7 @@ package org.mourya.msscbeerorderservice.repositories;
 import jakarta.persistence.LockModeType;
 import org.mourya.msscbeerorderservice.domain.BeerOrder;
 import org.mourya.msscbeerorderservice.domain.Customer;
-import org.mourya.msscbeerorderservice.domain.OrderStatusEnum;
+import org.mourya.msscbeerorderservice.web.model.OrderStatusEnum;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
