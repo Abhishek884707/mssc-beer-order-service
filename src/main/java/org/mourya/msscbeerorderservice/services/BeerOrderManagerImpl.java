@@ -1,6 +1,7 @@
 package org.mourya.msscbeerorderservice.services;
 
 import lombok.RequiredArgsConstructor;
+import org.mourya.brewery.model.BeerOrderDto;
 import org.mourya.msscbeerorderservice.domain.BeerOrder;
 import org.mourya.msscbeerorderservice.domain.BeerOrderEventEnum;
 import org.mourya.msscbeerorderservice.domain.BeerOrderStatusEnum;
@@ -49,6 +50,39 @@ public class BeerOrderManagerImpl implements BeerOrderManager {
         }else{
             sendBeerOrderEvent(beerOrder, BeerOrderEventEnum.VALIDATION_FAILED);
         }
+    }
+
+    @Override
+    public void beerOrderAllocationPassed(BeerOrderDto beerOrderDto) {
+        BeerOrder beerOrder = beerOrderRepository.findOneById(beerOrderDto.getId());
+        sendBeerOrderEvent(beerOrder, BeerOrderEventEnum.ALLOCATION_SUCCESS);
+        updateAllocatedQty(beerOrder, beerOrderDto);
+    }
+
+    @Override
+    public void beerOrderAllocationFailed(BeerOrderDto beerOrderDto) {
+        BeerOrder beerOrder = beerOrderRepository.findOneById(beerOrderDto.getId());
+        sendBeerOrderEvent(beerOrder, BeerOrderEventEnum.ALLOCATION_FAILED);
+    }
+
+    @Override
+    public void beerOrderAllocationPendingInventory(BeerOrderDto beerOrderDto) {
+        BeerOrder beerOrder = beerOrderRepository.findOneById(beerOrderDto.getId());
+        sendBeerOrderEvent(beerOrder, BeerOrderEventEnum.ALLOCATION_NO_INVENTORY);
+        updateAllocatedQty(beerOrder, beerOrderDto);
+    }
+
+    public void updateAllocatedQty(BeerOrder beerOrder, BeerOrderDto beerOrderDto){
+        BeerOrder allocatedOrder = beerOrderRepository.findOneById(beerOrderDto.getId());
+
+        allocatedOrder.getBeerOrderLines().forEach(beerOrderLine -> {
+            beerOrderDto.getBeerOrderLines().forEach(beerOrderLineDto -> {
+                if(beerOrderLine.getId().equals(beerOrderLineDto.getId())){
+                    beerOrderLine.setQuantityAllocated(beerOrderLineDto.getQuantityAllocated());
+                }
+            });
+        });
+        beerOrderRepository.saveAndFlush(beerOrder);
     }
 
     private void sendBeerOrderEvent(BeerOrder beerOrder, BeerOrderEventEnum eventEnum){
