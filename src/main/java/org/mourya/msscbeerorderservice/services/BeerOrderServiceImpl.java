@@ -1,5 +1,6 @@
 package org.mourya.msscbeerorderservice.services;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.mourya.msscbeerorderservice.domain.BeerOrder;
 import org.mourya.msscbeerorderservice.domain.BeerOrderStatusEnum;
@@ -22,6 +23,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class BeerOrderServiceImpl implements BeerOrderService {
 
     private final BeerOrderRepository beerOrderRepository;
@@ -29,14 +31,8 @@ public class BeerOrderServiceImpl implements BeerOrderService {
     private final BeerOrderMapper beerOrderMapper;
     private final ApplicationEventPublisher publisher;
 
-    public BeerOrderServiceImpl(BeerOrderRepository beerOrderRepository,
-                                CustomerRepository customerRepository,
-                                BeerOrderMapper beerOrderMapper, ApplicationEventPublisher publisher) {
-        this.beerOrderRepository = beerOrderRepository;
-        this.customerRepository = customerRepository;
-        this.beerOrderMapper = beerOrderMapper;
-        this.publisher = publisher;
-    }
+    private final BeerOrderManager beerOrderManager;
+
 
     @Override
     public BeerOrderPagedList listOrders(UUID customerId, Pageable pageable) {
@@ -71,14 +67,14 @@ public class BeerOrderServiceImpl implements BeerOrderService {
 
             beerOrder.getBeerOrderLines().forEach(line -> line.setBeerOrder(beerOrder));
 
-            BeerOrder savedBeerOrder = beerOrderRepository.saveAndFlush(beerOrder);
+            BeerOrder savedBeerOrder = beerOrderManager.newBeerOrder(beerOrder);
 
-            log.debug("Saved Beer Order: " + beerOrder.getId());
+            log.debug("Saved Beer Order: " + savedBeerOrder.getId());
 
             //todo impl
           //  publisher.publishEvent(new NewBeerOrderEvent(savedBeerOrder));
-
-            return beerOrderMapper.beerOrderToDto(savedBeerOrder);
+            BeerOrderDto beerOrderDto1 = beerOrderMapper.beerOrderToDto(savedBeerOrder);
+            return beerOrderDto1;
         }
         //todo add exception type
         throw new RuntimeException("Customer Not Found");
@@ -91,10 +87,7 @@ public class BeerOrderServiceImpl implements BeerOrderService {
 
     @Override
     public void pickupOrder(UUID customerId, UUID orderId) {
-        BeerOrder beerOrder = getOrder(customerId, orderId);
-        beerOrder.setOrderStatus(BeerOrderStatusEnum.PICKED_UP);
-
-        beerOrderRepository.save(beerOrder);
+        beerOrderManager.beerOrderPickedUp(orderId);
     }
 
     private BeerOrder getOrder(UUID customerId, UUID orderId){
