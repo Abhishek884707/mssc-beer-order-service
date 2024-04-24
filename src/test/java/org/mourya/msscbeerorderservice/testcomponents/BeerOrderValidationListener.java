@@ -22,20 +22,29 @@ public class BeerOrderValidationListener {
     public void list(Message msg){
 
         boolean isValid = true;
+        boolean sendResponse = true;
 
         ValidateOrderRequest request = (ValidateOrderRequest)  msg.getPayload();
 
-        // Condition to fail validation
         BeerOrderDto beerOrderDto = request.getBeerOrderDto();
-        if(beerOrderDto.getCustomerRef() != null && beerOrderDto.getCustomerRef().equals("fail-validation")){
-            isValid = false;
+
+        if(beerOrderDto.getCustomerRef() != null){
+            // Condition to fail validation
+            if(beerOrderDto.getCustomerRef().equals("fail-validation")){
+                isValid = false;
+            }else if (beerOrderDto.getCustomerRef().equals("don't-validate")){
+                sendResponse = false;
+            }
         }
 
-        jmsTemplate.convertAndSend(JmsConfig.VALIDATE_ORDER_RESPONSE_QUEUE, ValidateOrderResult.builder()
-                .isValid(isValid)
-                .orderId(beerOrderDto.getId())
-                .build()
-            );
+        if(sendResponse){
+            jmsTemplate.convertAndSend(JmsConfig.VALIDATE_ORDER_RESPONSE_QUEUE, ValidateOrderResult.builder()
+                    .isValid(isValid)
+                    .orderId(beerOrderDto.getId())
+                    .build()
+                );
+        }
+
 
     }
 
