@@ -38,10 +38,6 @@ import static org.awaitility.Awaitility.await;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-*/
-/**
- * Created by jt on 2/14/20.
- *//*
 
 @Slf4j
 @SpringBootTest
@@ -300,4 +296,5 @@ public class BeerOrderManagerImplIT {
 
         return beerOrder;
     }
-}*/
+}
+*/

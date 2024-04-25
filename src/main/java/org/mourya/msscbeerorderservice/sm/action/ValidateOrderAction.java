@@ -35,6 +35,8 @@ public class ValidateOrderAction implements Action<BeerOrderStatusEnum, BeerOrde
             jmsTemplate.convertAndSend(JmsConfig.VALIDATE_ORDER_QUEUE, ValidateOrderRequest.builder()
                     .beerOrderDto(beerOrderMapper.beerOrderToDto(beerOrder))
                     .build());
+
+            log.info("Validation Order Request was send. ");
         }, () -> log.error("Order Not Found. Id " + orderId));
     }
 }

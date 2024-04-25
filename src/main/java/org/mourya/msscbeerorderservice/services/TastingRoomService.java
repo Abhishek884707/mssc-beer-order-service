@@ -1,4 +1,3 @@
-/*
 package org.mourya.msscbeerorderservice.services;
 
 import lombok.extern.slf4j.Slf4j;
@@ -75,4 +74,4 @@ public class TastingRoomService {
     private String getRandomBeerUpc() {
         return beerUpcs.get(new Random().nextInt(beerUpcs.size() -0));
     }
-}*/
+}

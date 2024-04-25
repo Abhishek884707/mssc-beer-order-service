@@ -1,6 +1,5 @@
 package org.mourya.msscbeerorderservice.sm;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.mourya.msscbeerorderservice.domain.BeerOrder;
 import org.mourya.msscbeerorderservice.domain.BeerOrderEventEnum;
@@ -20,8 +19,8 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Slf4j
-@RequiredArgsConstructor
 @Component
+//@RequiredArgsConstructor
 public class BeerOrderStateChangesInterceptor extends StateMachineInterceptorAdapter<BeerOrderStatusEnum, BeerOrderEventEnum> {
 
     @Autowired

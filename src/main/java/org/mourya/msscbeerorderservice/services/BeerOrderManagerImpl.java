@@ -162,7 +162,7 @@ public class BeerOrderManagerImpl implements BeerOrderManager {
             if (!found.get()) {
                 try {
                     log.debug("Sleeping for retry");
-                    Thread.sleep(5000);
+                    Thread.sleep(100);
                 } catch (Exception e) {
                     // do nothing
                 }
